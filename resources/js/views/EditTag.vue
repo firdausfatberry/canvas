@@ -364,7 +364,7 @@ export default {
 
         async deleteTag() {
             await this.request()
-                .update(`/api/tags/${this.tag.id}`)
+                .patch(`/api/tags/${this.tag.id}`)
                 .then(() => {
                     this.$store.dispatch('search/buildIndex', true);
                     this.$toasted.show(this.trans.success, {

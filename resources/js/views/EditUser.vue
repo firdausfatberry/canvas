@@ -557,7 +557,7 @@ export default {
 
         async deleteUser() {
             await this.request()
-                .update(`/api/users/${this.uri}`)
+                .patch(`/api/users/${this.uri}`)
                 .then(() => {
                     this.$store.dispatch('search/buildIndex', true);
                     this.$toasted.show(this.trans.success, {

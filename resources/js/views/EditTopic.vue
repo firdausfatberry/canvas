@@ -364,7 +364,7 @@ export default {
 
         async deleteTopic() {
             await this.request()
-                .update(`/api/topics/${this.topic.id}`)
+                .patch(`/api/topics/${this.topic.id}`)
                 .then(() => {
                     this.$store.dispatch('search/buildIndex', true);
                     this.$toasted.show(this.trans.success, {
