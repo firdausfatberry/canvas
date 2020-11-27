@@ -350,7 +350,7 @@ export default {
 
         async deletePost() {
             await this.request()
-                .delete(`/api/posts/${this.post.id}`)
+                .update(`/api/posts/${this.post.id}`)
                 .then(() => {
                     this.$store.dispatch('search/buildIndex', true);
                     this.$toasted.show(this.trans.success, {
