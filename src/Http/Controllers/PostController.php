@@ -149,7 +149,9 @@ class PostController extends Controller
     {
         $post = Post::where('user_id', $request->user('canvas')->id)->findOrFail($id);
 
-        $post->delete();
+        $post->update(
+        'deleted_at'=> Carbon::now();
+        );
 
         return response()->json(null, 204);
     }
