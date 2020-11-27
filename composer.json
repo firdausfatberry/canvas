@@ -1,17 +1,17 @@
 {
-    "name": "austintoddj/canvas",
+    "name": "firdausfatberry/canvas",
     "description": "A Laravel publishing platform",
     "keywords": ["blog", "canvas", "laravel", "publishing", "platform"],
     "license": "MIT",
     "homepage": "https://trycanvas.app",
     "support": {
-        "issues": "https://github.com/austintoddj/canvas/issues",
-        "source": "https://github.com/austintoddj/canvas"
+        "issues": "https://github.com/firdausfatberry/canvas/issues",
+        "source": "https://github.com/firdausfatberry/canvas"
     },
     "authors": [
         {
-            "name": "Todd Austin",
-            "email": "austin.todd.j@gmail.com"
+            "name": "firdausfatberry",
+            "email": "afirdaus@fatberry.com"
         }
     ],
     "require": {
