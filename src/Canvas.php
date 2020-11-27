@@ -22,7 +22,7 @@ class Canvas
 
         $dependencies = json_decode(file_get_contents(base_path('composer.lock')), true)['packages'];
 
-        return collect($dependencies)->firstWhere('name', 'austintoddj/canvas')['version'];
+        return collect($dependencies)->firstWhere('name', 'firdausfatberry/canvas')['version'];
     }
 
     /**
