@@ -150,7 +150,7 @@ class PostController extends Controller
         $post = Post::where('user_id', $request->user('canvas')->id)->findOrFail($id);
 
         $post->update([
-        'deleted_at'=> \Carbon::now()
+        'deleted_at'=> date("Y-m-d H:i:s")
         ]);
 
         return response()->json(null, 204);

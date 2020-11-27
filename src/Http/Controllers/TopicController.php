@@ -111,7 +111,7 @@ class TopicController extends Controller
         $topic = Topic::findOrFail($id);
 
         $topic->update([
-            'deleted_at'=> \Carbon::now()
+            'deleted_at'=> date("Y-m-d H:i:s")
         ]);
 
         return response()->json(null, 204);

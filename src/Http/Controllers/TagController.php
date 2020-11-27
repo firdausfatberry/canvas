@@ -111,7 +111,7 @@ class TagController extends Controller
         $tag = Tag::findOrFail($id);
 
         $tag->update([
-            'deleted_at'=> \Carbon::now()
+            'deleted_at'=> date("Y-m-d H:i:s")
         ]);
 
         return response()->json(null, 204);

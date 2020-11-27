@@ -129,7 +129,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $user->update([
-            'deleted_at'=> \Carbon::now()
+            'deleted_at'=> date("Y-m-d H:i:s")
         ]);
 
         return response()->json(null, 204);
