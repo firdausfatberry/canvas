@@ -38,14 +38,14 @@ class PostController extends Controller
             }
 
             return $query->published();
-        })->latest()->withCount('views')->paginate();
+        })->where('deleted_at',null)->latest()->withCount('views')->paginate();
 
         if ($scope === 'all' && $hasPermission) {
-            $draftCount = Post::draft()->count();
-            $publishedCount = Post::published()->count();
+            $draftCount = Post::draft()->where('deleted_at',null)->count();
+            $publishedCount = Post::published()->where('deleted_at',null)->count();
         } else {
-            $draftCount = Post::where('user_id', $request->user('canvas')->id)->draft()->count();
-            $publishedCount = Post::where('user_id', $request->user('canvas')->id)->published()->count();
+            $draftCount = Post::where('user_id', $request->user('canvas')->id)->where('deleted_at',null)->draft()->count();
+            $publishedCount = Post::where('user_id', $request->user('canvas')->id)->where('deleted_at',null)->published()->count();
         }
 
         return response()->json([
@@ -149,9 +149,9 @@ class PostController extends Controller
     {
         $post = Post::where('user_id', $request->user('canvas')->id)->findOrFail($id);
 
-        $post->update(
-        'deleted_at'=> Carbon::now();
-        );
+        $post->update([
+        'deleted_at'=> \Carbon::now()
+        ]);
 
         return response()->json(null, 204);
     }

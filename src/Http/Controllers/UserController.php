@@ -24,6 +24,7 @@ class UserController extends Controller
         return response()->json(
             User::latest()
                 ->withCount('posts')
+                ->where('deleted_at',null)
                 ->paginate(), 200
         );
     }
@@ -127,7 +128,9 @@ class UserController extends Controller
 
         $user = User::findOrFail($id);
 
-        $user->delete();
+        $user->update([
+            'deleted_at'=> \Carbon::now()
+        ]);
 
         return response()->json(null, 204);
     }

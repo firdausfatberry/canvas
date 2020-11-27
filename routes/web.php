@@ -45,7 +45,7 @@ Route::middleware([Authorize::class])->group(function () {
             Route::get('create', [PostController::class, 'create']);
             Route::get('{id}', [PostController::class, 'show']);
             Route::post('{id}', [PostController::class, 'store']);
-            Route::delete('{id}', [PostController::class, 'destroy']);
+            Route::patch('{id}', [PostController::class, 'destroy']);
         });
 
         Route::prefix('stats')->group(function () {
@@ -59,7 +59,7 @@ Route::middleware([Authorize::class])->group(function () {
             Route::get('{id}', [TagController::class, 'show']);
             Route::get('{id}/posts', [TagController::class, 'showPosts']);
             Route::post('{id}', [TagController::class, 'store']);
-            Route::delete('{id}', [TagController::class, 'destroy']);
+            Route::patch('{id}', [TagController::class, 'destroy']);
         });
 
         Route::prefix('topics')->middleware([Admin::class])->group(function () {
@@ -68,7 +68,7 @@ Route::middleware([Authorize::class])->group(function () {
             Route::get('{id}', [TopicController::class, 'show']);
             Route::get('{id}/posts', [TopicController::class, 'showPosts']);
             Route::post('{id}', [TopicController::class, 'store']);
-            Route::delete('{id}', [TopicController::class, 'destroy']);
+            Route::patch('{id}', [TopicController::class, 'destroy']);
         });
 
         Route::prefix('users')->group(function () {
@@ -77,7 +77,7 @@ Route::middleware([Authorize::class])->group(function () {
             Route::get('{id}', [UserController::class, 'show']);
             Route::get('{id}/posts', [UserController::class, 'showPosts']);
             Route::post('{id}', [UserController::class, 'store']);
-            Route::delete('{id}', [UserController::class, 'destroy'])->middleware([Admin::class]);
+            Route::patch('{id}', [UserController::class, 'destroy'])->middleware([Admin::class]);
         });
 
         Route::prefix('search')->group(function () {

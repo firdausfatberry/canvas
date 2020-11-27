@@ -38,9 +38,9 @@ class StatsController extends Controller
         $user = User::firstWhere('id', $request->user('canvas')->id);
 
         if ($user->isAdmin || $user->isEditor) {
-            $post = Post::find($id);
+            $post = Post::where('deleted_at',null)->find($id);
         } else {
-            $post = Post::where('user_id', $request->user('canvas')->id)->find($id);
+            $post = Post::where('user_id', $request->user('canvas')->id)->where('deleted_at',null)->find($id);
         }
 
         if (! $post || ! $post->published) {

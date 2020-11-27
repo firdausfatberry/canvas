@@ -20,7 +20,7 @@ class TopicController extends Controller
     public function index(Request $request): JsonResponse
     {
         return response()->json(
-            Topic::latest()
+            Topic::where('deleted_at',null)->latest()
                  ->withCount('posts')
                  ->paginate(), 200
         );
@@ -110,7 +110,9 @@ class TopicController extends Controller
     {
         $topic = Topic::findOrFail($id);
 
-        $topic->delete();
+        $topic->update([
+            'deleted_at'=> \Carbon::now()
+        ]);
 
         return response()->json(null, 204);
     }

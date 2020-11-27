@@ -47,7 +47,7 @@ class SearchController extends Controller
      */
     public function showTags(Request $request): JsonResponse
     {
-        $tags = Tag::select('id', 'name')->latest()->get();
+        $tags = Tag::select('id', 'name')->where('deleted_at',null)->latest()->get();
 
         $tags->map(function ($tag) {
             $tag['type'] = 'Tag';
@@ -67,7 +67,7 @@ class SearchController extends Controller
      */
     public function showTopics(Request $request): JsonResponse
     {
-        $topics = Topic::select('id', 'name')->latest()->get();
+        $topics = Topic::select('id', 'name')->where('deleted_at',null)->latest()->get();
 
         $topics->map(function ($topic) {
             $topic['type'] = 'Topic';
@@ -87,7 +87,7 @@ class SearchController extends Controller
      */
     public function showUsers(Request $request): JsonResponse
     {
-        $users = User::select('id', 'name', 'email')->latest()->get();
+        $users = User::select('id', 'name', 'email')->where('deleted_at',null)->latest()->get();
 
         $users->map(function ($user) {
             $user['type'] = 'User';

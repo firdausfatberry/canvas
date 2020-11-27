@@ -20,7 +20,7 @@ class TagController extends Controller
     public function index(Request $request): JsonResponse
     {
         return response()->json(
-            Tag::latest()
+            Tag::where('deleted_at',null)->latest()
                ->withCount('posts')
                ->paginate(), 200
         );
@@ -110,7 +110,9 @@ class TagController extends Controller
     {
         $tag = Tag::findOrFail($id);
 
-        $tag->delete();
+        $tag->update([
+            'deleted_at'=> \Carbon::now()
+        ]);
 
         return response()->json(null, 204);
     }
